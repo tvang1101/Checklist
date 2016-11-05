@@ -28,7 +28,7 @@
         
         parent.removeChild(item);
 
-        prompt.classList.add('prompt');
+        animatePrompt();
         prompt.innerHTML = promptRemove;
         container.appendChild(prompt);
     }
@@ -38,7 +38,7 @@
         var parent = item.parentNode;
         var id = parent.id;
 
-        prompt.classList.add('prompt');
+        animatePrompt();
         container.appendChild(prompt);
 
         //Check if item should be add to the completed or to be re-added onto todo
@@ -49,8 +49,14 @@
 
         var promptMessage = (id === 'todo') ? prompt.innerHTML = promptComplete:prompt.innerHTML = promptIncomplete;
         
-        
-        
+    }
+
+    function animatePrompt() {
+        prompt.classList.add('prompt', 'active');
+        setTimeout(function() {
+            prompt.classList.remove('active');
+        }, 3000);
+        container.appendChild(prompt);
     }
 
     //Add new items to todo list
